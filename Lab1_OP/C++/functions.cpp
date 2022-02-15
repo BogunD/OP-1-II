@@ -2,12 +2,14 @@
 #include<string>
 #include <fstream>
 std::string get_text() {
+	char ctrl_D = 4;
 	std::string lines = {};
-	while (!std::cin.eof()) {
-		std::string line;
+	std::string line;
+	while (line[0] != ctrl_D) {
 		getline(std::cin, line);
 		lines += line + "\n";
 	}
+	lines = lines.substr(0, lines.size() - 3);
 	return lines;
 }
 void fill_file(std::string text, std::string file) {
