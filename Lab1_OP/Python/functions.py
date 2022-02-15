@@ -2,8 +2,12 @@ def inp_text():
     text = ""
     lines = []
     while True:
-        line = str(input(""))
-        if line:
+        try:
+            line = input()
+        except EOFError:
+            break
+
+        if line != chr(4):
             lines.append(line)
         else:
             break
