@@ -1,4 +1,5 @@
 def inp_text():
+    print("Enter lines. After line press enter.\nIf you want to finish typing, press ctrl+D")
     text = ""
     lines = []
     while True:
@@ -11,12 +12,12 @@ def inp_text():
             lines.append(line)
         else:
             break
-    text = '\n'.join(lines)
-    return text
 
-def fill_file(text,file_name):
+    return lines
+def fill_file(lines,file_name):
     f_fill = open(file_name, "w")
-    f_fill.write(text)
+    for line in lines:
+        f_fill.write(str(line)+"\n")
     f_fill.close()
 
 def edit_file( file_name1):
@@ -25,14 +26,17 @@ def edit_file( file_name1):
     lines2 = []
     lines3 = []
     lines = text.split("\n")
-    text = ""
-    newtext = ""
     for line in lines:
         size = len(line)//2 + 1
         if line[:1] == "#":
             lines2.append(line[1:size] + '!'+line[size:])
-            newtext = "\n".join(lines2)
+
         else:
             lines3.append(line)
-            text = "\n".join(lines3)
-    return text + "\n" +newtext
+    lines3.pop()
+    f1.close()
+    return  lines3 + lines2
+
+def print_list(listName):
+    for line in listName:
+        print(line)
